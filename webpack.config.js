@@ -1,7 +1,7 @@
 /*
  * @Description: learn webpack4.x
  * @Date: 2022-03-30 10:24:24
- * @LastEditTime: 2022-03-30 16:23:57
+ * @LastEditTime: 2022-03-30 16:59:11
  */
 const path = require("path"); // node自带模块，引入即用
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -60,6 +60,17 @@ module.exports = {
           "css-loader",
           "postcss-loader",
           "less-loader",
+        ],
+      },
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+            },
+          },
         ],
       },
     ],
