@@ -1,7 +1,7 @@
 /*
  * @Description: learn webpack4.x
  * @Date: 2022-03-30 10:24:24
- * @LastEditTime: 2022-03-30 16:59:11
+ * @LastEditTime: 2022-03-31 11:22:11
  */
 const path = require("path"); // node自带模块，引入即用
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -36,6 +36,19 @@ module.exports = {
     // 模块
     // 各种loader 解析css 需要css-loader（主要解析@import语法）和style-loader（将css插入到head标签中），loader的顺序默认从右往左,从下到上执行
     rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 10 * 1024,
+              outputPath: "/img/", // 大于转base64限制的图片就会被打包到img文件夹下
+              publicPath: "www.test.com",
+            },
+          },
+        ],
+      },
       {
         test: /\.css$/,
         use: [
